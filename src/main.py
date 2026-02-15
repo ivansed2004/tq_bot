@@ -7,7 +7,7 @@ from telegram.ext import (
 )
 from data_access import (
     append_to_queue, get_user_by_telegram_id,
-    remove_from_queue, get_queue_by_time_week_day,
+    pop_from_queue, get_queue_by_time_week_day,
     get_discipline_by_date_time, put_subscriber_into_queue,
     remove_subsriber_from_queue, get_all_oac_jobs
 )
@@ -158,8 +158,8 @@ async def on_button_leave_queue(update: Update, context: ContextTypes.DEFAULT_TY
     start_time = context.user_data["time"]
     week_day = context.user_data["week_day"]
     LOGGER.info(f"User {update.effective_user.id} has chosen queue '{queue_name}' to exit (event: ON_BUTTON_LEAVE_QUEUE)")
-    answer, position = remove_from_queue( start_time, week_day, update.effective_user.id )
-    LOGGER.info(f"User {update.effective_user.id} has released position '{position}' of queue '{queue_name}' (orm: remove_from_queue)")
+    answer, position = pop_from_queue( start_time, week_day, update.effective_user.id )
+    LOGGER.info(f"User {update.effective_user.id} has released position '{position}' of queue '{queue_name}' (orm: pop_from_queue)")
     if (answer == "yes"):
         await update.message.reply_text(f"Вы освободили позицию '{position}' в очереди '{queue_name}'")
         LOGGER.info(f"User {update.effective_user.id} has taken successful exiting message")
