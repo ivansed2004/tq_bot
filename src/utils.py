@@ -34,7 +34,7 @@ def get_queue_info_keyboard(start_time, week_day, action_name):
                 KeyboardButton(f"🔙{action_name}"),
                 KeyboardButton("🏛В меню")
             ]
-            ]
+        ]
     else:
         return [
             [   
