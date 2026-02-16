@@ -5,12 +5,6 @@ from telegram.ext import (
     MessageHandler, filters,
     ContextTypes
 )
-from data_access import (
-    append_to_queue, get_user_by_telegram_id,
-    pop_from_queue, get_queue_by_time_week_day,
-    get_discipline_by_date_time, put_subscriber_into_queue,
-    remove_subsriber_from_queue, get_all_oac_jobs
-)
 from utils import *
 from datetime import datetime
 from os import getenv

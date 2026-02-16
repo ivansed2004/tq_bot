@@ -1,14 +1,5 @@
 from telegram import Update
 from telegram.ext import ContextTypes
-from data_access import (
-    get_all_oac_jobs, get_all_disciplines,
-    get_discipline_by_date_time,
-    save_new_queue_with_discipline, 
-    save_new_oac_jobs_with_queue,
-    get_queue_by_time_week_day, 
-    save_new_queue_with_discipline
-)
-from models import Discipline, OACJobs
 from datetime import datetime, timedelta
 from oac import *
 from main import TZ

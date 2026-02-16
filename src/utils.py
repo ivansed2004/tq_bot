@@ -1,9 +1,4 @@
 from telegram import KeyboardButton
-from data_access import (
-    get_queues, get_user_by_telegram_id, 
-    save_user_registered, get_all_disciplines,
-    get_subscribed_queues_by_user, get_queue_state
-)
 
 
 def get_menu_keyboard():
@@ -75,9 +70,3 @@ def get_discipline_info_keyboard():
             KeyboardButton("🏛В меню")
         ]
     ]
-
-
-def authenticate(fullname: str, tid: int) -> None:
-    user = get_user_by_telegram_id(tid)
-    if not user:
-        save_user_registered(fullname_=fullname, tid=tid)

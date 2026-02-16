@@ -1,8 +1,4 @@
 from telegram.ext import ContextTypes
-from data_access import (
-    update_queue_state, get_queue_subscribers,
-    empty_queue
-)
 from datetime import datetime
 from applog import LOGGER
 
