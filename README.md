@@ -1,1 +1,4 @@
-There will be a detailed description. Very soon...
+0. Purpose and idea;
+1. Architecture in general;
+2. OAC architecture (OAC State Machine);
+3. Deployment scheme;
