@@ -1,22 +1,28 @@
 # Telegram Queuing Bot
 
-Telegram Queuing Bot (further, simply Bot) is a telegram bot for autoscheduling queues for university routines related to completion of laboratory and practice works keeping order which students were stay in.
+Telegram Queuing Bot (further, simply Bot) is a telegram bot for autoscheduling queues for university routines related to completion of laboratory and practice works keeping order which students were stay in. \
+**THE PROJECT IS ARCHIVED. NO SUPPORT ANYMORE.**
 
 ## Content
 0. Purpose and idea;
 1. Stack and dependencies;
-2. Architecture;
-3. Concepts: \
-   3.1. Queue; \
-   3.2. Discipline; \
-   3.3. User; \
-   3.4. OACJobs;
-4. OAC architecture (OAC State Machine);
-5. Key functionality: \
-5.1. Autoscheduling; \
-5.2. Notifications;
-6. External resources;
-7. Deployment;
+2. Concepts: \
+   2.1. Queue; \
+   2.2. Discipline; \
+   2.3. User; \
+   2.4. OACJobs;
+3. Overall architecture;
+4. Database scheme;
+5. OAC architecture (OAC State Machine);
+6. Key functionality: \
+   6.1. Autoscheduling; \
+   6.2. Notifications;
+7. File structure: \
+   7.1. tq_bot_service file structure; \
+   7.2. gateway_api service file structure;
+8. External resources;
+9. CI/CD pipeline;
+10. User actions
 
 ## 0. Purpose and idea
 
@@ -36,37 +42,83 @@ All dependencies are specified in $requirements.txt$ file. The key ones are desc
 2. **aiohttp**. Asynchronous HTTP client and server framework built natively on top of Python's asyncio event loop. It is a foundational library for modern async web development in Python, eliminating the need for multi-threading to handle high I/O concurrency.
 3. **APScheduler**. Task scheduling library that allows Python applications to execute periodic or time-delayed jobs. It abstracts the complexities of time management, providing a unified interface to run Python functions at specific intervals or pre-defined cron-like times.
 
-## 2. Architecture
+## 2. Concepts
 
-## 3. Concepts
+### 2.1. Queue
+// Purpose
+### 2.2. Discipline
+// Purpose
+### 2.3. User
+// Purpose
+### 2.4. OACJobs
 
-### 3.1. Queue
+The auxiliary object that stores job state for a queue. Initially, the scheduling mechanism in APScheduler does not allows to save the job the service falls. Having OACJobs as a separated database object is necessary to restore job state.
 
-### 3.2. Discipline
+## 3. Overall architecture
 
-### 3.3. User
+// Common scheme
 
-### 3.4. OACJobs
+### 3.1. tq_bot service
 
-## 4. OAC Architecture (OAC State Machine)
+// Purpose
+
+### 3.2. gateway_api service
+
+// Purpose
+
+### 3.3. postgres service
+
+## 4. Database scheme
+
+// UML schema with relations
+
+## 5. OAC Architecture (OAC State Machine)
 
 According to this architecture, each queue acts as a finite state machine which state is changed at the scheduled time.
 The following explains the sense of each state.
 
-### 4.1. Open State
+### 5.1. Opened State
 
-### 4.2. Active State
+A queue goes to **opened state** 10 minutes before a lesson, associated with the queue, starts.
 
-### 4.3. Closed State
+### 5.2. Active State
 
-## 5. Key functionality
+A queue goes to **active state** at the time a lesson starts. Students are still possible to take its place in a queue.
 
-### 5.1. Autoscheduling
+### 5.3. Closed State
 
-### 5.2. Notifications
+A queue goes to **closed state** at the time a lesson ends. Students aren't able to take a place anymore within a week. Order information (the line in which students stay) is erasured.
 
-## 6. External resources
+## 6. Key functionality
+
+### 6.1. Autoscheduling
+
+// on start, on restart
+// manual scheduling allowed
+
+### 6.2. Notifications
+
+// subscriptions, unsubscriptions
+// notifying according to the scheduling time
+
+## 7. File structure
+
+### 7.1. tq_bot service file structure
+
+// Responsibility
+
+### 7.2. gateway_api service file structure
+
+// Responsibility
+
+## 8. External resources
 
 The university's timetable has no public API.
 
-## 7. Deployment
+## 9. CI/CD pipeline
+
+// Dockerfile + environment (VDS, Linux) + CI/CD
+
+## 10. User actions
+
+// How a user can interact with a project
