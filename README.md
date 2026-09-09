@@ -45,18 +45,17 @@ All dependencies are specified in $requirements.txt$ file. The key ones are desc
 ## 2. Concepts
 
 ### 2.1. Queue
-// Purpose
+A main scheduling object. 
 ### 2.2. Discipline
-// Purpose
+A 'source of truth' for a queue.
 ### 2.3. User
-// Purpose
+A subject that operates on queues.
 ### 2.4. OACJobs
-
-The auxiliary object that stores job state for a queue. Initially, the scheduling mechanism in APScheduler does not allows to save the job the service falls. Having OACJobs as a separated database object is necessary to restore job state.
+An auxiliary object that stores job state for a queue. Initially, the scheduling mechanism in APScheduler does not allows to save the job when the service falls. Having OACJobs as a separated database object is necessary to restore job state.
 
 ## 3. Overall architecture
 
-// Common scheme
+<img width="868" height="446" alt="Screenshot from 2026-09-09 09-14-59" src="https://github.com/user-attachments/assets/90313218-fd06-4744-8db7-97b6775be4fe" />
 
 ### 3.1. tq_bot service
 
@@ -70,7 +69,7 @@ The auxiliary object that stores job state for a queue. Initially, the schedulin
 
 ## 4. Database scheme
 
-// UML schema with relations
+<img width="724" height="698" alt="Screenshot from 2026-09-09 09-50-45" src="https://github.com/user-attachments/assets/5a264ace-822b-430e-af49-1cb0c9f5baa3" />
 
 ## 5. OAC Architecture (OAC State Machine)
 
