@@ -12,7 +12,7 @@ Telegram Queuing Bot (further, simply Bot) is a telegram bot for autoscheduling 
    2.3. User; \
    2.4. OACJobs;
 3. Overall architecture;
-4. Database scheme;
+4. Database schema;
 5. OAC architecture (OAC State Machine);
 6. Key functionality: \
    6.1. Autoscheduling; \
@@ -22,7 +22,8 @@ Telegram Queuing Bot (further, simply Bot) is a telegram bot for autoscheduling 
    7.2. gateway_api service file structure;
 8. External resources;
 9. CI/CD pipeline;
-10. User actions
+10. Security risks;
+11. User actions
 
 ## 0. Purpose and idea
 
@@ -45,11 +46,11 @@ All dependencies are specified in $requirements.txt$ file. The key ones are desc
 ## 2. Concepts
 
 ### 2.1. Queue
-A scheduling unit in a Bot.
+A scheduling unit in a Bot. That's where students can take their place to wait.
 ### 2.2. Discipline
 A 'source of truth' for a queue. It provides an information for users of which lesson they're expecting.
 ### 2.3. User
-A subject that operates on queues.
+A subject that operates on queues. Any authenticated user accesses all the queues in a Bot.
 ### 2.4. OACJobs
 An auxiliary object that stores a queue job state. Initially, the scheduling mechanism in APScheduler does not allows to save the job when the service falls. Having OACJobs as a separated database object is necessary to restore a queue job state.
 
@@ -59,15 +60,17 @@ An auxiliary object that stores a queue job state. Initially, the scheduling mec
 
 ### 3.1. tq_bot service
 
-// Purpose
+The main Bot's service providing key functionality: scheduling, autoscheduling, notifications, access to queues.
 
 ### 3.2. gateway_api service
 
-// Purpose
+The Bot's service that acts as a intermediary between **tq_bot** service and **postgres**. It exposes API endpoints to **tq_bot** service via FastAPI and ORM for mapping Python objects to relational tables rows to **postgres** service.
 
 ### 3.3. postgres service
 
-## 4. Database scheme
+The Bot's service that interacts with database. Real data are stored in a Docker volume.
+
+## 4. Database schema
 
 <img width="724" height="698" alt="Screenshot from 2026-09-09 09-50-45" src="https://github.com/user-attachments/assets/5a264ace-822b-430e-af49-1cb0c9f5baa3" />
 
@@ -96,12 +99,12 @@ A queue goes to **closed state** at the time a lesson ends. Students aren't able
 
 ### 6.1. Autoscheduling
 
-// on start, on restart
+// on start, on restart \
 // manual scheduling allowed
 
 ### 6.2. Notifications
 
-// subscriptions, unsubscriptions
+// subscriptions, unsubscriptions \
 // notifying according to the scheduling time
 
 ## 7. File structure
@@ -120,8 +123,17 @@ The university's timetable has no public API.
 
 ## 9. CI/CD pipeline
 
-// Dockerfile + environment (VDS, Linux) + CI/CD
+// Dockerfile \ 
+// Deployment environment (Linux) \
+// CI/CD
 
-## 10. User actions
+## 10. Security risks
+
+// Registration on enter (without OAuth, Tokens, etc.) \
+// No 2FA authentication \
+// The project was local and no need to advances security measures \
+// Bot token
+
+## 11. User actions
 
 // How a user can interact with a project
