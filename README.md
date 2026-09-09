@@ -45,13 +45,13 @@ All dependencies are specified in $requirements.txt$ file. The key ones are desc
 ## 2. Concepts
 
 ### 2.1. Queue
-A main scheduling object. 
+A scheduling unit in a Bot.
 ### 2.2. Discipline
-A 'source of truth' for a queue.
+A 'source of truth' for a queue. It provides an information for users of which lesson they're expecting.
 ### 2.3. User
 A subject that operates on queues.
 ### 2.4. OACJobs
-An auxiliary object that stores job state for a queue. Initially, the scheduling mechanism in APScheduler does not allows to save the job when the service falls. Having OACJobs as a separated database object is necessary to restore job state.
+An auxiliary object that stores a queue job state. Initially, the scheduling mechanism in APScheduler does not allows to save the job when the service falls. Having OACJobs as a separated database object is necessary to restore a queue job state.
 
 ## 3. Overall architecture
 
@@ -72,6 +72,10 @@ An auxiliary object that stores job state for a queue. Initially, the scheduling
 <img width="724" height="698" alt="Screenshot from 2026-09-09 09-50-45" src="https://github.com/user-attachments/assets/5a264ace-822b-430e-af49-1cb0c9f5baa3" />
 
 ## 5. OAC Architecture (OAC State Machine)
+
+Below is the visual demonstration of OAC State Machine.
+
+<img width="407" height="424" alt="Screenshot from 2026-09-09 10-17-07" src="https://github.com/user-attachments/assets/5fb5c204-d351-4ee4-aaec-436882bdb377" />
 
 According to this architecture, each queue acts as a finite state machine which state is changed at the scheduled time.
 The following explains the sense of each state.
