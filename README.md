@@ -99,8 +99,11 @@ A queue goes to **closed state** at the time a lesson ends. Students aren't able
 
 ### 6.1. Autoscheduling
 
-// on start, on restart \
-// manual scheduling allowed
+Autoscheduling mechanism implies to schedule the queue without users participation. It checks whether the corresponding OACJobs are stored in the database. If they're here, it uses them to remake the APScheduler jobs for these queues (autoschedule_on_restart). If not, they're created again (autoschedule_on_start). In the brackets the functions that perform own type of autoscheduling are given.
+
+1. On start (Type 1). If the Bot is deployed at the first time, Type 1 autoscheduling is applied. The application is empty at all. In this case the Bot downloads the timetable from the university site via HTTPs and persists it in a PostgreSQL instance. Subsequently, these rows (Disciplines) are exploited to automatically make OACJobs.
+2. On restart (Type 2). Sometime the Bot used to fall. To recover the jobs, that are transient, the Bot pulls OACJobs information and then make APScheduler jobs. That's how Type 2 autoscheduling works.
+
 
 ### 6.2. Notifications
 
