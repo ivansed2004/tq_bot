@@ -107,8 +107,10 @@ Autoscheduling mechanism implies to schedule the queue without users participati
 
 ### 6.2. Notifications
 
-// subscriptions, unsubscriptions \
-// notifying according to the scheduling time
+A user finds out a lesson has begun after a notification from the Bot in its Telegram application. This feature is implemented as a collaboration of two considered mechanisms: autoscheduling and OAC State Machine. In the previous feature (autoscheduling) OACJobs are created and persisted in a PostgreSQL instance. When the expected event (**on_opened_queue**) is triggered, the active job information, stored as a OACJobs, is used for notifications. **on_opened_queue** event is the trigger that activates the notifications.
+
+1. **Subscription**. The user is notificated only if it's subscribed on a corresponding queue (**on_button_subscribe**). In a Queue instance in **models** a field $List["Users"]$ that contains all the subscribers of the queue. When **on_opened_queue** is triggered, the Bot pulls all these subscribed users and sent them the Telegram message to the chat instance of these users. Thus, it should take 10 minutes to take its place.
+2. **Unsubscription**. It's non-implemented event (**on_button_unsubscribe**), but it implies a user will be deleted from the corresponding queues's $List["Users"]$ when the user wishes. Thus, even if the **on_opened_queue** triggered, this user will not find out about it. Although it still can to see the queue state in its Bot chat via other mechanisms.
 
 ## 7. File structure
 
