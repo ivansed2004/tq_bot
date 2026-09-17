@@ -20,8 +20,9 @@ Telegram Queuing Bot (further, simply _Bot_) is a telegram bot for autoschedulin
 7. File structure: \
    7.1. tq_bot_service file structure; \
    7.2. gateway_api service file structure;
-8. External resources;
-9. CI/CD pipeline;
+8. CI/CD pipeline: \
+   8.1. Delivery to environment; \
+   8.2. Workflow file; \
 10. Security risks;
 11. User actions
 
@@ -135,23 +136,23 @@ A user finds out a lesson has begun after a notification from the _Bot_ in its T
 5. **parser.py**. The file that describes the procedure of parsing the HTML pages containing the university's timetable. This parsing works in collaboration with Type 1 autoscheduling. The timetable pages parsing and, consequently, pulling data from database are performed once per week. The primary Discipline files are made after the parser extract the timetable data from the pages.
 6. **pydantic_models**. The file defines so called **DTO (Data Transfer Object)**. This type of objects converts the real data objects pulled from the database into portable lightweight objects for transferring them through the REST API.
 
-## 8. External resources
+## 8. CI/CD pipeline
 
-The university's timetable has no public API.
+This section provides the description of CI/CD process of the _Bot_.
 
-## 9. CI/CD pipeline
+### 8.1. Delivery to environment
 
-// Dockerfile \ 
-// Deployment environment (Linux) \
-// CI/CD
+<img width="527" height="280" alt="Screenshot from 2026-09-17 17-19-34" src="https://github.com/user-attachments/assets/1c7ea768-3423-4365-8d43-ebfb3fd4af17" />
 
-## 10. Security risks
+### 8.2. Workflow file
+
+## 9. Security risks
 
 // Registration on enter (without OAuth, Tokens, etc.) \
 // No 2FA authentication \
 // The project was local and no need to advances security measures \
 // Bot token
 
-## 11. User actions
+## 10. User actions
 
 // How a user can interact with a project
