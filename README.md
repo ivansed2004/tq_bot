@@ -23,8 +23,9 @@ Telegram Queuing Bot (further, simply _Bot_) is a telegram bot for autoschedulin
 8. CI/CD pipeline: \
    8.1. Delivery to environment; \
    8.2. Workflow file; \
-10. Security risks;
-11. User actions
+9. Security risks;
+10. User actions;
+11. Usage.
 
 ## 0. Purpose and idea
 
@@ -156,3 +157,5 @@ This section provides the description of CI/CD process of the _Bot_.
 ## 10. User actions
 
 // How a user can interact with a project
+
+## 11. Usage
