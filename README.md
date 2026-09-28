@@ -156,8 +156,8 @@ This section provides the description of CI/CD process of the _Bot_.
 4. Tagging for releases and Docker Hub;
 5. Building and pushing.
 
-**Deploying**:
-1. Deploying is manual directly on the VDS Server via docker-compose.yml;
+**Deployment**:
+1. Deployment is manual directly on the VDS Server via docker-compose.yml;
 2. Deployment contains three containers: **tq_bot**, **gateway_api**, **postgres**;
 3. All the containers are included into one bridge network.
 
