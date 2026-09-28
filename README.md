@@ -22,7 +22,7 @@ Telegram Queuing Bot (further, simply _Bot_) is a telegram bot for autoschedulin
    7.2. gateway_api service file structure;
 8. CI/CD pipeline: \
    8.1. Delivery to environment; \
-   8.2. Workflow file; \
+   8.2. Workflow; \
 9. Security risks;
 10. User actions;
 11. Usage.
@@ -145,7 +145,21 @@ This section provides the description of CI/CD process of the _Bot_.
 
 <img width="527" height="280" alt="Screenshot from 2026-09-17 17-19-34" src="https://github.com/user-attachments/assets/1c7ea768-3423-4365-8d43-ebfb3fd4af17" />
 
-### 8.2. Workflow file
+<img width="739" height="486" alt="Screenshot from 2026-09-28 10-58-31" src="https://github.com/user-attachments/assets/604695c3-7fca-43da-a288-3de138cce94f" />
+
+### 8.2. Workflow
+
+**Workflow file**:
+1. GitHub starts new workflow in Actions;
+2. Checking out the repository;
+3. Docker Hub Login;
+4. Tagging for releases and Docker Hub;
+5. Building and pushing.
+
+**Deploying**:
+1. Deploying is manual directly on the VDS Server via docker-compose.yml;
+2. Deployment contains three containers: **tq_bot**, **gateway_api**, **postgres**;
+3. All the containers are included into one bridge network.
 
 ## 9. Security risks
 
