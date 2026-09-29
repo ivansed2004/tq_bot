@@ -145,7 +145,7 @@ This section provides the description of CI/CD process of the _Bot_.
 
 <img width="527" height="280" alt="Screenshot from 2026-09-17 17-19-34" src="https://github.com/user-attachments/assets/1c7ea768-3423-4365-8d43-ebfb3fd4af17" />
 
-<img width="739" height="486" alt="Screenshot from 2026-09-28 10-58-31" src="https://github.com/user-attachments/assets/604695c3-7fca-43da-a288-3de138cce94f" />
+<img width="877" height="575" alt="Screenshot from 2026-09-29 14-19-43" src="https://github.com/user-attachments/assets/9aa7c1e3-30a9-4532-a3be-d12196b6c51f" />
 
 ### 8.2. Workflow
 
