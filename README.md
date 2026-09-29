@@ -163,10 +163,11 @@ This section provides the description of CI/CD process of the _Bot_.
 
 ## 9. Security risks
 
-// Registration on enter (without OAuth, Tokens, etc.) \
-// No 2FA authentication \
-// The project was local and no need to advances security measures \
-// Bot token
+The Bot doesn't imply the powerful security due to local character of it. No passwords, tokens and 2FA authentication are used. The reason of this security lack is that the Bot doesn't contain the sensitive and personal information except for telegram_id, which can be ejected from any Telegram bot.
+
+Meanwhile, it doesn't mean that no data to be secured. Below is the list of secured data:
+1. **Bot token**. It accesses the Bot and give you ability to make any changes. It it stored as an environment variable and is used in the **main.py** file to access the Bot.
+2. **Docker Hub credentials**. The most sensitive data that is necessary to interact with Docker Hub. Username and password are stored in secret variables and are not applied in the workflow file in the raw.
 
 ## 10. User actions
 
