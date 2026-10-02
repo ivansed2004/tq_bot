@@ -24,8 +24,7 @@ Telegram Queuing Bot (further, simply _Bot_) is a telegram bot for autoschedulin
    8.1. Delivery to environment; \
    8.2. Workflow; \
 9. Security risks;
-10. User actions;
-11. Usage.
+10. User actions.
 
 ## 0. Purpose and idea
 
@@ -172,5 +171,3 @@ Meanwhile, it doesn't mean that no data to be secured. Below is the list of secu
 ## 10. User actions
 
 // How a user can interact with a project
-
-## 11. Usage
