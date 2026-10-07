@@ -162,12 +162,43 @@ This section provides the description of CI/CD process of the _Bot_.
 
 ## 9. Security risks
 
-The Bot doesn't imply the powerful security due to local character of it. No passwords, tokens and 2FA authentication are used. The reason of this security lack is that the Bot doesn't contain the sensitive and personal information except for telegram_id, which can be ejected from any Telegram bot.
+The _Bot_ doesn't imply the powerful security due to local character of it. No passwords, tokens and 2FA authentication are used. The reason of this security lack is that the _Bot_ doesn't contain the sensitive and personal information except for telegram_id, which can be ejected from any Telegram bot.
 
 Meanwhile, it doesn't mean that no data to be secured. Below is the list of secured data:
-1. **Bot token**. It accesses the Bot and give you ability to make any changes. It it stored as an environment variable and is used in the **main.py** file to access the Bot.
+1. **Bot token**. It accesses the _Bot_ and give you ability to make any changes. It is stored as an environment variable and is used in the **main.py** file to access the _Bot_.
 2. **Docker Hub credentials**. The most sensitive data that is necessary to interact with Docker Hub. Username and password are stored in secret variables and are not applied in the workflow file in the raw.
 
 ## 10. User actions
 
-// How a user can interact with a project
+The _Bot_ is implemented as a Finite State Machine (FSM), where each user's action switches its chat to the next state according to the action selected. The following schema describes the states and the conditions of transitions (actions):
+
+<img width="1084" height="581" alt="Screenshot from 2026-10-07 21-33-44" src="https://github.com/user-attachments/assets/b10b5e71-0384-4aa7-9911-2bf8672139d8" />
+
+Below is the **state** and **actions** descriptions that had been managed to implement before the _Bot_ archived.
+
+States:
+1. **MENU**. The chat displays the menu buttons to make actions on the queues or the disciplines. \
+2. **DISCIPLINE_INFO**. The chat displays the information about the selected disciplines pulled from the **postgres**. \
+3. **QUEUE_INFO**. The chat displays the information about the selected queues pulled from the **postgres**.
+4. **LISTED_QUEUES_TO_INFO**. The chat displays the list of queues to show information of it. \
+5. **LISTED_QUEUES_TO_ENTER**. The chat displays the list of queues to enter it. \
+6. **LISTED_QUEUES_TO_LEAVE**. The chat displays the list of queues to leave it. \
+7. **LISTED_DISCIPLINES_TO_INFO**. The chat displays the list of disciplines to show information of it. \
+8. **LISTED_SUBSCRIBED_QUEUES**. The chat displays the list of queues a user subscribed on. \
+9. **LISTED_OPENED_QUEUES**. The chat displays the list of queues available to take a place in.
+
+Actions:
+1. **ON_BUTTON_MENU**. The user action that switches to **MENU** state from one that allows it. This button is located on an end state of the _Bot_ like **QUEUE_INFO** OR **DISCIPLINE_INFO**.
+2. **ON_MENU_BUTTON_LIST_QUEUES**. Allows for selecting the next action for queues from the list displayed.
+3. **ON_MENU_BUTTON_SCHEDULING_QUEUES**. Allows for manual scheduling for queues from the list.
+4. **ON_MENU_BUTTON_ENTER_QUEUE**. Allows for entering queues from the list.
+5. **ON_MENU_BUTTON_LEAVE_QUEUE**. Allows for leaving queues the list.
+6. **ON_MENU_BUTTON_LIST_OPENED_QUEUES**. This action allows to display all the opened queues in the _Bot_.
+7. **ON_MENU_BUTTON_SUBSCRIBED_QUEUES**. This actions allows to display queues a user subscribed on.
+8. **ON_BUTTON_DISCIPLINE_INFO**. This action displays all the pulled disciplines information from the **postgres**.
+9. **ON_BUTTON_QUEUE_INFO**. This action allows to display queues information from the **postgres**.
+10. **ON_BUTTON_CLEAR_QUEUE**. This action allows to erasure all a queue's order information making it empty.
+11. **ON_BUTTON_UPDATE_QUEUE**. This action allows to update the state of the queue in the chat if any changes come to the _Bot_.
+12. **ON_BUTTON_ENTER_QUEUE**. This action allows to enter a queue (to take a place).
+13. **ON_BUTTON_LEAVE_QUEUE**. This action allows to leave a queue (to leave a user's place).
+14. **ON_BUTTON_BACK**. The action allows to return to the previous state on the chain. For example, from **QUEUE_INFO** to **LISTED_QUEUES_TO_INFO**. Although the arrows links only the states that are mentioned here (and in the scheme above), this action is possible on any intermediate or end state.
